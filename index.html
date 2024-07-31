@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice Assistant</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Interactive Voice Assistant</h1>
+    <button id="microphone-btn">🎤 Click to Speak</button>
+    <p id="command-display">Say something...</p>
+    <p id="response-display"></p>
+
+    <script>
+        $(document).ready(function() {
+            $('#microphone-btn').click(function() {
+                $.post('/listen', function(data) {
+                    $('#command-display').text("You said: " + data.command);
+                    $('#response-display').text("Assistant: " + data.response);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
